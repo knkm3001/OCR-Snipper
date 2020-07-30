@@ -2,7 +2,8 @@
 from PIL import Image,ImageOps
 import pyocr
 import pyocr.builders
-from io import BytesIO 
+from io import BytesIO
+import pyperclip
 
 def ocr(binary_data):
 
@@ -21,3 +22,4 @@ def ocr(binary_data):
         builder=pyocr.builders.TextBuilder(tesseract_layout=6)  # 結果をテキストとして受け取る
     )
     print(text+'\n')
+    pyperclip.copy(text)

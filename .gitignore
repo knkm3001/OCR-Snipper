@@ -2,3 +2,6 @@
 *.png
 *.pyc
 .vscode/settings.json
+build/
+dist/
+main.spec

@@ -34,7 +34,7 @@ class MainWindow(QMainWindow):
         self.snip.showFullScreen()
 
     def clickedQuitButton(self):
-        quit()
+        sys.exit(1)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
