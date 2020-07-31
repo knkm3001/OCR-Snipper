@@ -1,17 +1,19 @@
 import sys
-from ocr import ocr
+
 from PyQt5.QtCore import Qt, QPoint, QRectF, QRect, QByteArray, QBuffer
 from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5.QtGui import QPixmap, QScreen, QPainter, QPainterPath, QBrush, QColor, QGuiApplication
 
+from ocr import ocr
+
+
 class Snip(QWidget):
     startPos = QPoint(0, 0)
     endPos = QPoint(0, 0)
-    def __init__(self,args,gcp_eng):
+    def __init__(self,args):
         super().__init__()
 
         self.args = args
-        self.gcp_eng = gcp_eng
 
         screen = QApplication.primaryScreen()
 
@@ -57,7 +59,7 @@ class Snip(QWidget):
         # QPixmap で選択座標をコピー
         pmap = self.snipScreen.copy(QRect(self.startPos, self.endPos))
         
-        # QPixmap -> Qimage -> binary
+        # QPixmap -> Qimage -> バイナリ
         qimg = pmap.toImage()
         image_format = 'PNG'
         bits = QByteArray()
@@ -65,7 +67,7 @@ class Snip(QWidget):
         qimg.save(buffer, image_format)
 
         # OCR
-        ocr(buffer.data(),self.args.debugmode,self.gcp_eng)
+        ocr(buffer.data(),self.args.debugmode)
 
         self.close()
 

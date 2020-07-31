@@ -1,10 +1,10 @@
 import sys
-from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton,QSizePolicy
+from PyQt5.QtWidgets import *
 
 from snip import Snip
+from ocrchangebutton import OCRChangeButton
 
 from argparse import ArgumentParser
-
 
 argparser = ArgumentParser()
 argparser.add_argument('-d', '--debugmode',
@@ -21,36 +21,38 @@ class MainWindow(QMainWindow):
         self.initUI()
     
     def initUI(self):
+        self.ocrEngRadioButtonSetUp()
+
         snipButton = QPushButton("Snip",self)
-        snipButton.setGeometry(10, 10, 60, 35)
+        snipButton.setGeometry(25, 10, 100, 35)
         snipButton.clicked.connect(self.clickedStartButton)
 
-        fileButton = QPushButton("File",self)
-        fileButton.setGeometry(80, 10, 60, 35)
-
-        settingButton = QPushButton("Setting",self)
-        settingButton.setGeometry(150, 10, 60, 35)
-
         quitButton = QPushButton("Quit",self)
-        quitButton.setGeometry(220, 10, 60, 35)
+        quitButton.setGeometry(135, 10, 100, 35)
         quitButton.setStyleSheet("color:#ff0000;")
         quitButton.clicked.connect(self.clickedQuitButton)
 
-        self.setGeometry(300,300,300,200)
+        self.setGeometry(300,300,260,300) # x,y,幅,高さ
+        self.setMinimumHeight(150)
+        self.setMaximumHeight(150)
+        self.setMinimumWidth(260)
+        self.setMaximumWidth(260)
         self.setWindowTitle('OCR helper')
         self.show()
 
-        
-    
     def clickedStartButton(self):
-
-        
-
-        self.snip = Snip(args)
+        gcp_eng = self.ocrbutton_widget.getOcrEng()
+        self.snip = Snip(args,gcp_eng)
         self.snip.showFullScreen()
+
 
     def clickedQuitButton(self):
         sys.exit(1)
+
+    def ocrEngRadioButtonSetUp(self):
+     self.ocrbutton_widget = OCRChangeButton()
+
+     self.setCentralWidget(self.ocrbutton_widget) 
 
 if __name__ == '__main__':
 
