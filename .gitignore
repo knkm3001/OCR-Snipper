@@ -5,3 +5,5 @@
 build/
 dist/
 main.spec
+src/env.py
+src/env.py
