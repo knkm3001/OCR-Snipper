@@ -20,8 +20,7 @@ TesseractとGoogle Cloud Visionのラッパーツールとしての存在
 - pythonの準備
 
     ```
-    pip install PyQt5 pyocr pyperclip
-    ※他にもあったが...また今度詳しく書く
+    pip install PyQt5 pyocr pyperclip requests
     ```
 
 
