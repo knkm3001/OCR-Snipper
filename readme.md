@@ -1,5 +1,5 @@
 # OCR Snipper
-スクリーンショットを取る感覚でOCRを行えるGUIツール
+スクリーンショットを取る感覚でOCRを行えるGUIツール  
 TesseractとGoogle Cloud Visionのラッパーツールとしての存在
 
 ## 動作環境
