@@ -33,7 +33,7 @@ class Snip(QWidget):
         painterPath = QPainterPath() 
         painterPath.addRect(QRectF(rectSize))
         painterPath.addRoundedRect(QRectF(self.startPos, self.endPos), 0, 0) # 範囲指定箇所を指定
-        painter.setBrush(QBrush(QColor(0 , 0, 100, 100)))
+        painter.setBrush(QBrush(QColor(0, 0, 0, 180)))
         painter.drawPath(painterPath)
 
     def mousePressEvent(self, event):
@@ -48,6 +48,11 @@ class Snip(QWidget):
         self.capture()
 
     def capture(self):
+        
+        # 右下から左上に選択したときの処理
+        if self.startPos.x() > self.endPos.x():
+            self.startPos, self.endPos = self.endPos, self.startPos
+
 
         # QPixmap で選択座標をコピー
         pmap = self.snipScreen.copy(QRect(self.startPos, self.endPos))
