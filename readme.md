@@ -1,15 +1,17 @@
 # OCR Snipper
 スクリーンショットを取る感覚でOCRを行えるGUIツール
+TesseractとGoogle Cloud Visionのラッパーツールとしての存在
 
 ## 動作環境
 - win10
 - python 3.7以上
-- Tesseractがインストールされておりパスが入ってること
+- Tesseractがインストール済み
+- Google Cloud VisionのAPIキーを取得済み
 
 
 ## OCRエンジン
 - Tesseract
-- Google Cloud Vision(今後対応)
+- Google Cloud Vision
 
 ## 環境構築
 
@@ -19,7 +21,7 @@
 
     ```
     pip install PyQt5 pyocr pyperclip
-    ※他にもあったが...
+    ※他にもあったが...また今度詳しく書く
     ```
 
 
