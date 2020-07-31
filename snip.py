@@ -10,8 +10,10 @@ from ocr import ocr
 class Snip(QWidget):
     startPos = QPoint(0, 0)
     endPos = QPoint(0, 0)
-    def __init__(self):
+    def __init__(self,args):
         super().__init__()
+
+        self.args = args
 
         screen = QApplication.primaryScreen()
 
@@ -65,7 +67,7 @@ class Snip(QWidget):
         qimg.save(buffer, image_format)
 
         # OCR
-        ocr(buffer.data())
+        ocr(buffer.data(),self.args.debugmode)
 
         self.close()
 

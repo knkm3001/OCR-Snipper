@@ -3,6 +3,17 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton,QSizePolicy
 
 from snip import Snip
 
+from argparse import ArgumentParser
+
+
+argparser = ArgumentParser()
+argparser.add_argument('-d', '--debugmode',
+                    action='store_true',
+                    default=False,
+                    help='is debugmode on')
+args = argparser.parse_args()
+
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -28,15 +39,21 @@ class MainWindow(QMainWindow):
         self.setGeometry(300,300,300,200)
         self.setWindowTitle('OCR helper')
         self.show()
+
+        
     
     def clickedStartButton(self):
-        self.snip = Snip()
+
+        
+
+        self.snip = Snip(args)
         self.snip.showFullScreen()
 
     def clickedQuitButton(self):
         sys.exit(1)
 
 if __name__ == '__main__':
+
     app = QApplication(sys.argv)
     ex=MainWindow()
     sys.exit(app.exec())
