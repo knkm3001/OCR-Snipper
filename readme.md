@@ -16,12 +16,17 @@ TesseractとGoogle Cloud Visionのラッパーツールみたいなかんじ
 - Google Cloud Vision
 
 ## 環境構築
-- Google Cloud VisionのAPIキーを取得 [こちらを参考に](https://cloud.google.com/vision/docs/ocr?hl=ja)  
-- Tesseractのダウンロード及びパスの追加  [こちらを参考に](https://qiita.com/henjiganai/items/7a5e871f652b32b41a18)
-
-- pythonの準備
+1. OCRエンジンの準備 
+    - Tesseractのダウンロード及びパスの追加  [こちらを参考に](https://qiita.com/henjiganai/items/7a5e871f652b32b41a18)  
+    - Google Cloud VisionのAPIキーを取得 [こちらを参考に](https://cloud.google.com/vision/docs/ocr?hl=ja)   
+    APIキーは`env.py`に記入する  
+1.  pythonの準備
     ```
     pip install PyQt5 pyocr pyperclip requests
+    ```
+1. 実行
+    ```
+    python main.py
     ```
 
 
