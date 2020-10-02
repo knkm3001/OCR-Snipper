@@ -2,7 +2,7 @@ import sys
 from PyQt5.QtWidgets import *
 
 from snip import Snip
-from ocrchangebutton import OCRChangeButton
+from ocrChangeButton import OCRChangeButton
 
 from argparse import ArgumentParser
 
