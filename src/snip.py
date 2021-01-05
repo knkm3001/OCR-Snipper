@@ -7,7 +7,7 @@ from PyQt5.QtGui import QPixmap, QScreen, QPainter, QPainterPath, QBrush, QColor
 class Snip(QWidget):
     startPos = QPoint(0, 0)
     endPos = QPoint(0, 0)
-    def __init__(self,args,gcp_eng):
+    def __init__(self,args,gcp_eng,mainwindow_controller):
         super().__init__()
 
         self.args = args
@@ -19,10 +19,11 @@ class Snip(QWidget):
         # 関数screenShotのsnipScreen.copyあたりでID指定できればいけそう
         # screens = [screen for screen in QGuiApplication.screens()]
 
-        # TODO ここでキャプチャする前にmainの画面をどうにか避けたい
         self.snipScreen = screen.grabWindow(
           QApplication.desktop().winId()
         )
+
+        mainwindow_controller.show() # 実態はMainWindowのself.show()
 
 
     def paintEvent(self,event):

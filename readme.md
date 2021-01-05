@@ -7,13 +7,14 @@ TesseractとGoogle Cloud Visionのラッパーツールみたいなかんじ
 ## 動作環境
 - win10 64bit(他の環境では動作未確認)
 - python 3.7以上
-- Tesseractがインストール済み
 - Google Cloud VisionのAPIキーを取得済み
+- Tesseractがインストール済み
+
 
 
 ## 選択可能なOCRエンジン
-- Tesseract
 - Google Cloud Vision
+- Tesseract
 
 ## 環境構築
 - Google Cloud VisionのAPIキーを取得 [こちらを参考に](https://cloud.google.com/vision/docs/ocr?hl=ja)  
@@ -29,9 +30,9 @@ TesseractとGoogle Cloud Visionのラッパーツールみたいなかんじ
 頻繁に使うようならばexe化などしてデスクトップにショートカットを置くと便利。  
 pyファイルを実行してもOK
 
-これでexe化 (onefileにすると遅くなる)
+これでexe化
 ```
-pyinstaller main.py
+pyinstaller --noconsole -y  ocr-snipper.py
 ```
 
 

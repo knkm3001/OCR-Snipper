@@ -25,13 +25,14 @@ class OCRChangeButton(QWidget):
 
     def ocrEngRadioButtonSetUp(self):
 
-        ocr_eng_rb1 = QRadioButton("Tesseract")
+        ocr_eng_rb1 = QRadioButton("Google Cloud Vision")
         ocr_eng_rb1.toggled.connect(self.updateLabel)
         ocr_eng_rb1.setChecked(True) 
 
-        ocr_eng_rb2 = QRadioButton("Google Cloud Vision")
-        ocr_eng_rb2.toggled.connect(self.updateLabel)
 
+        ocr_eng_rb2 = QRadioButton("Tesseract")
+        ocr_eng_rb2.toggled.connect(self.updateLabel)
+        
         label = QLabel("Select OCR Engine")
         
         Vlayout = QVBoxLayout()

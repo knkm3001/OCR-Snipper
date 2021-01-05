@@ -1,9 +1,8 @@
 import sys
+import time
 from PyQt5.QtWidgets import *
-
 from snip import Snip
 from ocrChangeButton import OCRChangeButton
-
 from argparse import ArgumentParser
 
 argparser = ArgumentParser()
@@ -25,7 +24,7 @@ class MainWindow(QMainWindow):
 
         snipButton = QPushButton("Snip",self)
         snipButton.setGeometry(25, 10, 100, 35)
-        snipButton.clicked.connect(self.clickedStartButton)
+        snipButton.clicked.connect(self.clickedSnipButton)
 
         quitButton = QPushButton("Quit",self)
         quitButton.setGeometry(135, 10, 100, 35)
@@ -40,11 +39,13 @@ class MainWindow(QMainWindow):
         self.setWindowTitle('OCR helper')
         self.show()
 
-    def clickedStartButton(self):
+    def clickedSnipButton(self):
         gcp_eng = self.ocrbutton_widget.getOcrEng()
-        self.snip = Snip(args,gcp_eng)
+        
+        self.hide()
+        time.sleep(0.2) # TODO ここむりやりなのでなんとかしたい
+        self.snip = Snip(args,gcp_eng,self)
         self.snip.showFullScreen()
-
 
     def clickedQuitButton(self):
         sys.exit(1)
