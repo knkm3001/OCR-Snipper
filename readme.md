@@ -48,4 +48,4 @@ $ pyinstaller --noconsole -y  ./src/ocr-snipper.py
 - [PythonとTesseract OCRで文字認識](https://qiita.com/henjiganai/items/7a5e871f652b32b41a18)
 
 ## TODO
-- 現在は必要最小限なので設定ボタンでいろいろカスタムできるようにする
+- 現在はメイン画面のみのキャプチャしかできないので、複数画面に対応させる
