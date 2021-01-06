@@ -37,7 +37,7 @@ pyファイルを実行してもOK
 
 これでexe化
 ```
-pyinstaller --noconsole -y  ocr-snipper.py
+$ pyinstaller --noconsole -y  ./src/ocr-snipper.py
 ```
 
 
