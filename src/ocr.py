@@ -1,5 +1,6 @@
 
 from PIL import Image,ImageOps,ImageEnhance
+from pyzbar.pyzbar import decode 
 import pyocr
 import pyocr.builders
 from io import BytesIO
@@ -8,26 +9,31 @@ import pyperclip
 import requests
 import json
 import base64
+import sys
 
 import env
 
 Google_API_Kye = env.Google_API_Kye
-
 
 def ocr(img_bin,debugmode,ocr_eng='tesseract'):
     """ ocr """
 
     new_img = imgPross(img_bin,debugmode)
 
-    print('ocr_eng',ocr_eng)
+    print('---------------------------------------------------')
 
-    if ocr_eng == 'gcv':
-        text = ocr_by_gcv(new_img)
+    d = decode(new_img)
+    if(d):
+        print("QRcode readed")
+        text = d[0].data.decode("utf-8")
     else:
-        text = ocr_by_tesseract(new_img)
+        print('selected ocr_eng:',ocr_eng)
+        if ocr_eng == 'gcv':
+            text = ocr_by_gcv(new_img)
+        else:
+            text = ocr_by_tesseract(new_img)
     
-    print('===================================================\n')
-    print(text+'\n')
+    print("text:",text+'\n')
     pyperclip.copy(text)
 
 
@@ -51,7 +57,7 @@ def ocr_by_tesseract(new_img):
 
     tools = pyocr.get_available_tools()
     if len(tools) == 0:
-        print("No OCR tool found")
+        print("Tesseract is not found")
         sys.exit(1)
 
     text = tools[0].image_to_string(
@@ -65,12 +71,14 @@ def ocr_by_tesseract(new_img):
 def ocr_by_gcv(new_img):
     """ Google Cloud Vision によるOCR """
 
+    if not (Google_API_Kye):
+        print("Google API Kye has not been set")
+        sys.exit(1)
+
     output = BytesIO()
     new_img.save(output, format='PNG')
     new_img_bin = output.getvalue()
     image_base64 = base64.b64encode(new_img_bin).decode('utf-8')
-
-    #print(image_base64)
 
     api_url = 'https://vision.googleapis.com/v1/images:annotate?key={}'.format(Google_API_Kye)
     req_body = json.dumps({
@@ -83,10 +91,14 @@ def ocr_by_gcv(new_img):
             }]
         }]
     })
-    res = requests.post(api_url, data=req_body)
-    res_json = res.json()
-    
-    text = res_json["responses"][0]["textAnnotations"][0]["description"]
+    try:
+        res = requests.post(api_url, data=req_body)
+        res.raise_for_status()
+        res_json = res.json()
+        text = res_json["responses"][0]["textAnnotations"][0]["description"]
+    except requests.exceptions.RequestException as e:
+        print("Error!: ",e)
+        sys.exit(1)
 
     return text
 
