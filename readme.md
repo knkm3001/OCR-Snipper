@@ -38,7 +38,7 @@ OCRエンジンにはTesseractとGoogle Cloud Visionを選択可能
 
 これでexe化
 ```
-pyinstaller --noconsole -y  ocr-snipper.py
+$ pyinstaller --noconsole -y  ./src/ocr-snipper.py
 ```
 
 
