@@ -1,8 +1,9 @@
 # OCR Snipper
-スクリーンショットを取る感覚でOCRを行えるGUIツール。一般的なQRコードにも対応    
-OCR実行後はクリップボードにテキストを保存する  
-OCRエンジンにはTesseractとGoogle Cloud Visionを選択可能  
-![output-palette](https://user-images.githubusercontent.com/54818379/89716566-01430c00-d9e9-11ea-8a4c-eb6d9f6d187e.gif)
+スクリーンショットを取る感覚でOCRを行えるGUIツール。一般的なQRコードにも対応。    
+OCR実行後はクリップボードにテキストを保存する。  
+OCRエンジンにはGoogle Cloud VisionとTesseractを選択可能。  
+![output-palette](https://user-images.githubusercontent.com/54818379/104105916-0e945780-52f5-11eb-8bb9-c3a4c34bd296.gif)
+
 ## 動作環境
 - win10 64bit(他の環境では動作未確認)
 - python 3.7以上
@@ -20,16 +21,16 @@ OCRエンジンにはTesseractとGoogle Cloud Visionを選択可能
     APIキーは`env.py`に記入する  
 1. レポジトリ クローン
     ```
-    git clone https://github.com/knkm3001/OCR-Snipper.git
-    cd OCR-Snipper
+    $ git clone https://github.com/knkm3001/OCR-Snipper.git
+    $ cd OCR-Snipper
     ```
 1.  pythonのライブラリの準備
     ```
-    pip install PyQt5 pyocr pyperclip requests pyzbar
+    $ pip install PyQt5 pyocr pyperclip requests pyzbar
     ```
 1. 実行
     ```
-    python src/ocr-snipper.py
+    $ python src/ocr-snipper.py
     ```
 
 
