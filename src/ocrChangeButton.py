@@ -8,9 +8,9 @@ class OCRChangeButton(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.ocreng_dict = {'Tesseract':'tesseract','Google Cloud Vision':'gcv'}
+        self.ocr_eng_dict = {'Tesseract':'tesseract','Google Cloud Vision':'gcv'}
 
-        self.ocrEng = 'tesseract'
+        self.ocr_eng = 'tesseract'
 
         self.initUI()
 
@@ -19,11 +19,11 @@ class OCRChangeButton(QWidget):
         self.setGeometry(0,30,260,50) # x,y,幅,高さ
         self.setWindowTitle('OCR helper - seting')
 
-        self.ocrEngRadioButtonSetUp()
+        self.ocr_engRadioButtonSetUp()
 
         self.show()
 
-    def ocrEngRadioButtonSetUp(self):
+    def ocr_engRadioButtonSetUp(self):
 
         ocr_eng_rb1 = QRadioButton("Google Cloud Vision")
         ocr_eng_rb1.toggled.connect(self.updateLabel)
@@ -48,7 +48,7 @@ class OCRChangeButton(QWidget):
         rbtn = self.sender()
 
         if rbtn.isChecked() == True:
-            self.ocrEng = self.ocreng_dict[rbtn.text()]
+            self.ocr_eng = self.ocr_eng_dict[rbtn.text()]
 
-    def getOcrEng(self):
-        return self.ocrEng
+    def getocr_eng(self):
+        return self.ocr_eng

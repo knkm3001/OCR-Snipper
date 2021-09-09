@@ -15,7 +15,7 @@ import env
 
 Google_API_Kye = env.Google_API_Kye
 
-def ocr(img_bin,debugmode,ocr_eng='tesseract'):
+def ocr(img_bin,debugmode,ocr_eng,is_cut_newline):
     """ ocr """
 
     new_img = imgPross(img_bin,debugmode)
@@ -32,8 +32,13 @@ def ocr(img_bin,debugmode,ocr_eng='tesseract'):
             text = ocr_by_gcv(new_img)
         else:
             text = ocr_by_tesseract(new_img)
-    
-    print("text:",text+'\n')
+
+        print('is_cut_newline:',is_cut_newline)
+        if is_cut_newline:   
+            text = text.replace('\n','')
+
+    print("text:\n")
+    print(text)
     pyperclip.copy(text)
 
 

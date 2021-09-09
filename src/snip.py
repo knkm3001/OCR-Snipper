@@ -7,11 +7,12 @@ from PyQt5.QtGui import QPixmap, QScreen, QPainter, QPainterPath, QBrush, QColor
 class Snip(QWidget):
     startPos = QPoint(0, 0)
     endPos = QPoint(0, 0)
-    def __init__(self,args,gcp_eng,mainwindow_controller):
+    def __init__(self,args,mainwindow_class_self):
         super().__init__()
 
         self.args = args
-        self.gcp_eng = gcp_eng
+        self.gcp_eng = mainwindow_class_self.ocr_eng
+        self.is_cut_newline = mainwindow_class_self.is_cut_newline
 
         screen = QApplication.primaryScreen()
 
@@ -23,7 +24,7 @@ class Snip(QWidget):
           QApplication.desktop().winId()
         )
 
-        mainwindow_controller.show() # 実態はMainWindowのself.show()
+        mainwindow_class_self.show() # mainwindowを再描画
 
 
     def paintEvent(self,event):
@@ -66,7 +67,7 @@ class Snip(QWidget):
         qimg.save(buffer, image_format)
 
         # OCR
-        ocr(buffer.data(),self.args.debugmode,self.gcp_eng)
+        ocr(buffer.data(),self.args.debugmode,self.gcp_eng,self.is_cut_newline)
 
         self.close()
 
