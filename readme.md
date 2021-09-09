@@ -51,4 +51,3 @@ $ pyinstaller --noconsole -y  ./src/ocr-snipper.py
 
 ## TODO
 - 現在はスクショ対象はメインモニターのみなので、複数画面に対応させる
-- 設定画面で改行削除モードがほしい
